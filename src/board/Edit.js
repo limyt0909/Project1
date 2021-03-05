@@ -33,6 +33,7 @@ const Edit = () => {
       setComments(value);
     }
   };
+
   const getBooks = () => {
     axios.get(`http://localhost:3001/edit?idx=${slug}`).then((res) => {
       console.log(res.data);

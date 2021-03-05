@@ -3,6 +3,7 @@ import Top from '../Top/Top';
 import Bottom from '../Bottom/Bottom';
 import styles from '../pages/Aboutaone.module.css';
 import axios from 'axios';
+import { useHistory } from 'react-router-dom';
 import queryString from 'query-string';
 <link
   rel="stylesheet"
@@ -16,8 +17,12 @@ import queryString from 'query-string';
 />;
 
 const Edit2 = () => {
+  const history = useHistory();
   const [data, setData] = useState([]);
   const [booksNo, setBooksNo] = useState('');
+  const [title, setTitle] = useState('');
+  const [author, setAuthor] = useState('');
+  const [comments, setComments] = useState('');
   const location = window.location.href.split('?');
   const displayBook = (book) => {
     if (book.length === 0) return;
@@ -25,10 +30,27 @@ const Edit2 = () => {
       const Comments = document.getElementById('Comments');
       const Title = document.getElementById('Title');
       const Author = document.getElementById('Author');
+      setTitle(key.Title);
+      setAuthor(key.Author);
+      setComments(key.Comments);
       Title.value = key.Title;
       Author.value = key.Author;
       Comments.value = key.Comments;
     });
+  };
+
+  const handleOnChange = (event) => {
+    const { className, value } = event.target;
+    console.log(className, value);
+    if (className === 'Title') {
+      setTitle(value);
+    }
+    if (className === 'Author') {
+      setAuthor(value);
+    }
+    if (className === 'Comments') {
+      setComments(value);
+    }
   };
 
   useEffect(() => {
@@ -44,20 +66,31 @@ const Edit2 = () => {
   }, []);
 
   const update = () => {
-    const Title = document.getElementById('Title');
-    // let TitleModify = Title.value;
-    let TitleModify = 'Hi';
-    let AuthorModify = '';
-    let CommentsModify = '';
+    const TitleElem = document.getElementById('Title');
+    const AuthorElem = document.getElementById('Author');
+    const CommentsElem = document.getElementById('Comments');
+    let TitleModify = TitleElem.value;
+    let AuthorModify = AuthorElem.value;
+    let CommentsModify = CommentsElem.value;
     const updateData = {
       idx: booksNo,
       Title: TitleModify,
       Author: AuthorModify,
       Comments: CommentsModify,
     };
-    axios.post('http://localhost:3001/edit', (data = updateData));
+    axios
+      .post('http://localhost:3001/edit', updateData)
+      .then(history.push('/board2'));
   };
-
+  const handleDelete = () => {
+    console.log('Delete Function');
+    const data = {
+      idx: booksNo,
+    };
+    axios.post('http://localhost:3001/delete', data).then((res) => {
+      history.push('/board2');
+    });
+  };
   return (
     <>
       <Top />
@@ -67,7 +100,7 @@ const Edit2 = () => {
         <h1>Edit</h1>
 
         <tagbox />
-        <form action="/more?idx=1">
+        <form>
           <div class="form-horizontal">
             <div class="form-group row">
               <label class="col-form-label col-sm-2" for="Title">
@@ -77,8 +110,8 @@ const Edit2 = () => {
                 <input
                   readonly
                   className="Title"
-                  class="form-control-plaintext"
                   id="Title"
+                  onChange={handleOnChange}
                 />
               </div>
             </div>
@@ -90,9 +123,10 @@ const Edit2 = () => {
               <div class="col-sm-7">
                 <input
                   readonly
-                  class="form-control-plaintext"
+                  className="form-control-plaintext Author"
                   id="Author"
                   values="<titles></titles>"
+                  onChange={handleOnChange}
                 />
               </div>
             </div>
@@ -104,11 +138,12 @@ const Edit2 = () => {
               <div class="col-sm-10">
                 <textarea
                   readonly
-                  class="form-control-plaintext"
+                  className="form-control-plaintext Comments"
                   cols="20"
                   id="Comments"
                   maxlength="32000"
                   rows="7"
+                  onChange={handleOnChange}
                 ></textarea>
               </div>
             </div>
@@ -119,10 +154,14 @@ const Edit2 = () => {
                 <input
                   type="submit"
                   value="Update"
-                  class="btn btn-default btn-warning"
+                  className="btn btn-default btn-warning"
+                  onClick={update}
                 />
                 <a href="/board2" class="btn btn-outline-dark cancel">
                   Back
+                </a>
+                <a href onClick={handleDelete} class="btn btn-danger cancel">
+                  Delete
                 </a>
               </div>
             </div>

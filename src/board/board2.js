@@ -49,7 +49,6 @@ const Board = () => {
       tr.appendChild(idx);
       tr.appendChild(Title);
       tr.appendChild(Author);
-
       tr.appendChild(DateTime);
       tbody.appendChild(tr);
     });

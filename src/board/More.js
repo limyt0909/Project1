@@ -4,6 +4,7 @@ import Bottom from '../Bottom/Bottom';
 import styles from '../pages/Aboutaone.module.css';
 import axios from 'axios';
 import queryString from 'query-string';
+
 <link
   rel="stylesheet"
   href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
@@ -16,9 +17,10 @@ import queryString from 'query-string';
 />;
 
 const More = () => {
-  const [data, setData] = useState([]);
   const [booksNo, setBooksNo] = useState('');
   const location = window.location.href.split('?');
+
+  //ID값을 찾아서 데이터 뿌리기
   const displayBook = (book) => {
     if (book.length === 0) return;
     book.forEach((key, value) => {
@@ -31,6 +33,7 @@ const More = () => {
     });
   };
 
+  //해당 IDX에 맞는 내용 불러오기
   useEffect(() => {
     if (location.length <= 1) return;
     const idx = location[1].split('=')[1];
@@ -38,27 +41,8 @@ const More = () => {
     axios.get(`http://localhost:3001/more?idx=${idx}`).then((res) => {
       const books = res.data.books;
       displayBook(books);
-      //  const books = {"books":[{"idx":2,"Book_ID":2,"Title":"두번째 게시글 입니다 title이 어디까지갈까ㅇ요요요요요요요용용","Author":"용택2","DateTime":"2021-02-19","Comments":"ㅇ용"},{"idx":1,"Book_ID":1,"Title":"첫번째 게시글인데 ","Author":"용택","DateTime":"2021-02-19","Comments":"testtesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttest"}]}
-      // setData(books);
     });
   }, []);
-
-  /*
-  const update = () => {
-    const Title = document.getElementById('Title');
-    // let TitleModify = Title.value;
-    let TitleModify = 'Hi';
-    let AuthorModify = '';
-    let CommentsModify = '';
-    const updateData = {
-      idx: booksNo,
-      Title: TitleModify,
-      Author: AuthorModify,
-      Comments: CommentsModify,
-    };
-    axios.post('http://localhost:3001/edit', (data = updateData));
-  };
-*/
 
   return (
     <>
@@ -69,7 +53,7 @@ const More = () => {
         <h1>Read</h1>
 
         <tagbox />
-        <form action="/more?idx=1">
+        <form>
           <div class="form-horizontal">
             <div class="form-group row">
               <label class="col-form-label col-sm-2" for="Title">
@@ -77,7 +61,7 @@ const More = () => {
               </label>
               <div class="col-sm-8">
                 <input
-                  readonly
+                  readonly="readonly"
                   className="Title"
                   class="form-control-plaintext"
                   id="Title"
@@ -91,7 +75,7 @@ const More = () => {
               </label>
               <div class="col-sm-7">
                 <input
-                  readonly
+                  readonly="readonly"
                   class="form-control-plaintext"
                   id="Author"
                   values="<titles></titles>"
@@ -105,7 +89,7 @@ const More = () => {
               </label>
               <div class="col-sm-10">
                 <textarea
-                  readonly
+                  readonly="readonly"
                   class="form-control-plaintext"
                   cols="20"
                   id="Comments"
@@ -118,6 +102,12 @@ const More = () => {
             <div class="form-group row">
               <label class="col-form-label col-sm-2"></label>
               <div class="col-sm-10">
+                <a
+                  href={`/edit2?idx=${booksNo}`}
+                  class="btn btn-warning cancel"
+                >
+                  Edit
+                </a>
                 <a href="/board2" class="btn btn-outline-dark cancel">
                   Back
                 </a>

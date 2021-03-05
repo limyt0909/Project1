@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import Top from '../Top/Top';
 import Bottom from '../Bottom/Bottom';
 import styles from '../pages/Aboutaone.module.css';
 import axios from 'axios';
+import { useHistory } from 'react-router-dom';
 
 <link
   rel="stylesheet"
@@ -14,14 +15,15 @@ import axios from 'axios';
   name="viewport"
   content="width=device-width, initial-scale=1, shrink-to-fit=no"
 />;
-const Create = () => {
-  const [title, setTitle] = useState('');
-  const [author, setAuthor] = useState('');
-  const [comments, setComments] = useState('');
-  const currLocation = window.location.href.split('/');
-  const slug = currLocation[currLocation.length - 1];
-  const [idx, setidx] = useState('');
 
+const Create = () => {
+  //useState 선언 -> handleonChange에서 사용
+  const [title, setTitle] = useState();
+  const [author, setAuthor] = useState();
+  const [comments, setComments] = useState();
+  const history = useHistory();
+
+  //classname에 있는 내용을 value에 저장
   const handleOnChange = (event) => {
     const { className, value } = event.target;
     if (className === 'Title') {
@@ -34,16 +36,18 @@ const Create = () => {
       setComments(value);
     }
   };
+
   console.log(handleOnChange);
 
-  const handleUpdate = () => {
-    let updateData = {
+  const handleCreate = () => {
+    const updateData = {
       Title: title,
       Author: author,
       Comments: comments,
     };
+    //server.js 에있는 app.post Create에 데이터 전달
     axios.post(`http://localhost:3001/create`, updateData).then((res) => {
-      console.log(res.data);
+      history.push('/board2');
     });
   };
 
@@ -53,7 +57,8 @@ const Create = () => {
       <div className={styles.title}> 게시글 쓰기 </div>
       <div class="container">
         <h1>Create</h1>
-        <form action={handleUpdate} method="post">
+
+        <form>
           <div class="form-horizontal">
             <div class="form-group row">
               <label class="col-form-label col-sm-2" for="Title">
@@ -82,9 +87,10 @@ const Create = () => {
                 <textarea
                   class="form-control"
                   cols="20"
-                  classname="Comments"
+                  className="Comments"
                   maxlength="32000"
                   rows="7"
+                  onChange={handleOnChange}
                 ></textarea>
               </div>
             </div>
@@ -93,9 +99,10 @@ const Create = () => {
               <label class="col-form-label col-sm-2"></label>
               <div class="col-sm-10">
                 <input
-                  type="submit"
+                  type="button"
                   value="Create"
                   class="btn btn-default btn-warning"
+                  onClick={handleCreate}
                 />
                 <a class="btn btn-outline-dark cancel" href="/board2">
                   Cancel
