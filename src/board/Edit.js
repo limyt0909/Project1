@@ -35,7 +35,7 @@ const Edit = () => {
   };
 
   const getBooks = () => {
-    axios.get(`http://localhost:3001/edit?idx=${slug}`).then((res) => {
+    axios.get(`http://3.36.115.7/edit?idx=${slug}`).then((res) => {
       console.log(res.data);
     });
   };
@@ -52,7 +52,7 @@ const Edit = () => {
       Author: author,
       Comments: comments,
     };
-    axios.post(`http://localhost:3001/edit`, updateData).then((res) => {
+    axios.post(`http://3.36.115.7/edit`, updateData).then((res) => {
       console.log(res.data);
     });
   };

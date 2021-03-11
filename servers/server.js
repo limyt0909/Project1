@@ -1,23 +1,16 @@
 const express = require('express');
 const app = express();
-
 const path = require('path');
-const ejs = require('ejs');
 const sqlite3 = require('sqlite3').verbose();
-
-// const cors = require('cors');
 
 const bodyParser = require('body-parser');
 const port = process.env.PORT || 3001;
 const route = require('./routes/index.js');
+
 const cors = require('cors');
 app.use(cors());
-// app.use(cors());
-
 app.use(bodyParser.json());
 app.use('/api', route);
-
-//app.use('/api', (req, res)=> res.json({username:'bryan'}));
 
 app.listen(port, () => {
   console.log(`express is running on ${port}`);
@@ -60,7 +53,7 @@ db.run(query, (err) => {
 });
 
 //JSON형태로 books에 쏘기 Board1 게시판에서 사용
-app.get('/books', (req, res) => {
+app.get('/books', cors(), (req, res) => {
   const sql = 'SELECT * FROM Books';
   db.all(sql, [], (err, rows) => {
     if (err) {

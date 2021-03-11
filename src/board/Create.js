@@ -46,7 +46,7 @@ const Create = () => {
       Comments: comments,
     };
     //server.js 에있는 app.post Create에 데이터 전달
-    axios.post(`http://localhost:3001/create`, updateData).then((res) => {
+    axios.post(`/create`, updateData).then((res) => {
       history.push('/board2');
     });
   };

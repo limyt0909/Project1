@@ -3,7 +3,6 @@ import Top from '../Top/Top';
 import Bottom from '../Bottom/Bottom';
 import styles from '../pages/Aboutaone.module.css';
 import axios from 'axios';
-import queryString from 'query-string';
 
 <link
   rel="stylesheet"
@@ -38,7 +37,7 @@ const More = () => {
     if (location.length <= 1) return;
     const idx = location[1].split('=')[1];
     setBooksNo(idx);
-    axios.get(`http://localhost:3001/more?idx=${idx}`).then((res) => {
+    axios.get(`http://3.36.115.7/more?idx=${idx}`).then((res) => {
       const books = res.data.books;
       displayBook(books);
     });

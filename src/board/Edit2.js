@@ -57,11 +57,9 @@ const Edit2 = () => {
     if (location.length <= 1) return;
     const idx = location[1].split('=')[1];
     setBooksNo(idx);
-    axios.get(`http://localhost:3001/more?idx=${idx}`).then((res) => {
+    axios.get(`/more?idx=${idx}`).then((res) => {
       const books = res.data.books;
       displayBook(books);
-      //  const books = {"books":[{"idx":2,"Book_ID":2,"Title":"두번째 게시글 입니다 title이 어디까지갈까ㅇ요요요요요요요용용","Author":"용택2","DateTime":"2021-02-19","Comments":"ㅇ용"},{"idx":1,"Book_ID":1,"Title":"첫번째 게시글인데 ","Author":"용택","DateTime":"2021-02-19","Comments":"testtesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttest"}]}
-      // setData(books);
     });
   }, []);
 
@@ -78,16 +76,14 @@ const Edit2 = () => {
       Author: AuthorModify,
       Comments: CommentsModify,
     };
-    axios
-      .post('http://localhost:3001/edit', updateData)
-      .then(history.push('/board2'));
+    axios.post('/edit', updateData).then(history.push('/board2'));
   };
   const handleDelete = () => {
     console.log('Delete Function');
     const data = {
       idx: booksNo,
     };
-    axios.post('http://localhost:3001/delete', data).then((res) => {
+    axios.post('/delete', data).then((res) => {
       history.push('/board2');
     });
   };
@@ -109,7 +105,7 @@ const Edit2 = () => {
               <div class="col-sm-8">
                 <input
                   readonly
-                  className="Title"
+                  className="form-control-plaintext Title"
                   id="Title"
                   onChange={handleOnChange}
                 />

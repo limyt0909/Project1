@@ -18,15 +18,12 @@ import axios from 'axios';
 const Board = () => {
   //DB를 불러오는 명령어
   const [data, setData] = useState([]);
+
   useEffect(() => {
-    axios.get('http://localhost:3001/books').then((res) => {
+    axios.get('/books').then((res) => {
       const books = res.data.books;
-      //  const books = {"books":[{"idx":2,"Book_ID":2,"Title":"두번째 게시글 입니다 title이 어디까지갈까ㅇ요요요요요요요용용","Author":"용택2","DateTime":"2021-02-19","Comments":"ㅇ용"},{"idx":1,"Book_ID":1,"Title":"첫번째 게시글인데 ","Author":"용택","DateTime":"2021-02-19","Comments":"testtesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttest"}]}
       setData(books);
     });
-
-    //  const data = {"books":[{"idx":2,"Book_ID":2,"Title":"두번째 게시글 입니다 용","Author":"용택2","DateTime":"2021-02-19","Comments":"ㅇ용"},{"idx":1,"Book_ID":1,"Title":"첫번째 게시글인데 ","Author":"용택","DateTime":"2021-02-19","Comments":"test"}]}
-    //  setData(data.books)
   }, []);
 
   useEffect(() => {
@@ -36,7 +33,7 @@ const Board = () => {
       const tr = document.createElement('tr');
       tr.addEventListener('click', () => {
         console.log(key.idx);
-        window.location.href = `http://localhost:3000/more?idx=${key.idx}`;
+        window.location.href = `/more?idx=${key.idx}`;
       });
       const idx = document.createElement('td');
       const DateTime = document.createElement('td');
