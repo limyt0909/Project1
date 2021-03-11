@@ -101,13 +101,10 @@ const More = () => {
             <div class="form-group row">
               <label class="col-form-label col-sm-2"></label>
               <div class="col-sm-10">
-                <a
-                  href={`/edit2?idx=${booksNo}`}
-                  class="btn btn-warning cancel"
-                >
+                <a href={`/edit?idx=${booksNo}`} class="btn btn-warning cancel">
                   Edit
                 </a>
-                <a href="/board2" class="btn btn-outline-dark cancel">
+                <a href="/board" class="btn btn-outline-dark cancel">
                   Back
                 </a>
               </div>

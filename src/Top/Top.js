@@ -123,7 +123,7 @@ const Top = () => {
                 <NavDropdown.Item href="/Resources" disabled>
                   관세무역 뉴스
                 </NavDropdown.Item>
-                <NavDropdown.Item href="/board2">
+                <NavDropdown.Item href="/board">
                   관세무역 자료실
                 </NavDropdown.Item>
                 <NavDropdown.Divider />

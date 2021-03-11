@@ -47,7 +47,7 @@ const Create = () => {
     };
     //server.js 에있는 app.post Create에 데이터 전달
     axios.post(`/create`, updateData).then((res) => {
-      history.push('/board2');
+      history.push('/board');
     });
   };
 
@@ -104,7 +104,7 @@ const Create = () => {
                   class="btn btn-default btn-warning"
                   onClick={handleCreate}
                 />
-                <a class="btn btn-outline-dark cancel" href="/board2">
+                <a class="btn btn-outline-dark cancel" href="/board">
                   Cancel
                 </a>
               </div>

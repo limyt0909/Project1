@@ -28,7 +28,6 @@
   "scripts": {
     "start": "npm-run-all --parallel start:**",
     "start:client": "react-scripts start",
-    "start:server": "nodemon ./servers/server.js",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
@@ -51,5 +50,5 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "http://3.36.115.7:3001"
+  "proxy": "http://3.36.115.7"
 }

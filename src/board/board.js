@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Top from '../Top/Top';
 import Bottom from '../Bottom/Bottom';
-
 import styles from '../pages/Aboutaone.module.css';
+import axios from 'axios';
+
 <link
   rel="stylesheet"
   href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
@@ -14,116 +15,80 @@ import styles from '../pages/Aboutaone.module.css';
   content="width=device-width, initial-scale=1, shrink-to-fit=no"
 />;
 
-class board extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      username: null,
-    };
-  }
+const Board = () => {
+  //DB를 불러오는 명령어
+  const [data, setData] = useState([]);
 
-  componentDidMount() {
-    fetch('api')
-      .then((res) => res.json())
-      .then((data) => this.setState({ username: data.username }));
-    fetch('api/text')
-      .then((res) => res.json())
-      .then((data) => this.setState({ textname: data.textname }));
-    fetch('api/writer')
-      .then((res) => res.json())
-      .then((data) => this.setState({ writername: data.writername }));
-    fetch('api/datetime')
-      .then((res) => res.json())
-      .then((data) => this.setState({ datetime: data.datetime }));
-  }
+  useEffect(() => {
+    axios.get('/books').then((res) => {
+      const books = res.data.books;
+      setData(books);
+    });
+  }, []);
 
-  render() {
-    const { username } = this.state;
-    const { textname } = this.state;
-    const { writername } = this.state;
-    const { datetime } = this.state;
+  useEffect(() => {
+    if (data.length === 0) return;
+    const tbody = document.querySelector('tbody');
+    data.forEach((key, value) => {
+      const tr = document.createElement('tr');
+      tr.addEventListener('click', () => {
+        console.log(key.idx);
+        window.location.href = `/more?idx=${key.idx}`;
+      });
+      const idx = document.createElement('td');
+      const DateTime = document.createElement('td');
+      const Title = document.createElement('td');
+      const Author = document.createElement('td');
+      idx.innerHTML = key.idx;
+      DateTime.innerHTML = key.DateTime;
+      Title.innerHTML = key.Title;
+      Author.innerHTML = key.Author;
+      tr.appendChild(idx);
+      tr.appendChild(Title);
+      tr.appendChild(Author);
+      tr.appendChild(DateTime);
+      tbody.appendChild(tr);
+    });
+  }, [data]);
 
-    return (
-      <>
-        <Top />
-        <div className={styles.title}> 게시판 </div>
-        <div class="container">
-          <link
-            rel="stylesheet"
-            href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-            integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
-            crossorigin="anonymous"
-          />
+  return (
+    <section>
+      <Top />
+      <div className={styles.title}> 게시판 </div>
+      <div class="container">
+        <link
+          rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+          crossorigin="anonymous"
+        />
 
-          <div className="App">
-            <ul>
-              <div class="table-responsive-sm">
-                <table class="table table-hover">
-                  <thead>
-                    <tr>
-                      <th>번호</th>
-                      <th>제목</th>
-                      <th>작성자</th>
-                      <th>작성일</th>
-                      <th class="d-print-none">
-                        <a class="btn btn-sm btn-success" href="/create">
-                          Create
-                        </a>
-                      </th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td> {username ? `${username}` : 'te2'}</td>
-                      <td>
-                        {' '}
-                        {textname ? `${textname}` : '첫번째 게시글 입니다'}
-                      </td>
-                      <td> {writername ? `${writername}` : 'AoneCustoms'}</td>
-                      <td> {datetime ? `${datetime}` : '2021-03-02'}</td>
-                    </tr>
-                  </tbody>
-                  <tbody>
-                    <tr>
-                      <td>2</td>
-                      <td>두번째 게시글 입니다</td>
-                      <td>Aonecustoms</td>
-                      <td>2021-02-27</td>
-                    </tr>
-                  </tbody>
-                  <tbody>
-                    <tr>
-                      <td>3</td>
-                      <td>세번째 게시글 입니다</td>
-                      <td>Aonecustoms</td>
-                      <td>2021-02-28</td>
-                    </tr>
-                  </tbody>{' '}
-                  <tbody>
-                    <tr>
-                      <td>4</td>
-                      <td>네번째 게시글 입니다</td>
-                      <td>Aonecustoms</td>
-                      <td>2021-03-01</td>
-                    </tr>
-                  </tbody>{' '}
-                  <tbody>
-                    <tr>
-                      <td>5</td>
-                      <td>다섯번째 게시글 입니다</td>
-                      <td>Aonecustoms</td>
-                      <td>2021-03-02</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </ul>
-          </div>
+        <div className="App">
+          <ul>
+            <div class="table-responsive-sm">
+              <table class="table table-hover">
+                <thead>
+                  <tr>
+                    <th>번호</th>
+                    <th>제목</th>
+                    <th>작성자</th>
+                    <th>작성일</th>
+                    <th class="d-print-none">
+                      <a class="btn btn-sm btn-success" href="/create">
+                        Create
+                      </a>{' '}
+                    </th>
+                  </tr>
+                </thead>
+                <tbody />
+              </table>
+            </div>
+          </ul>
         </div>
-        <Bottom />{' '}
-      </>
-    );
-  }
-}
+      </div>
+      <Bottom />
+    </section>
+  );
+};
 
-export default board;
+export default Board;

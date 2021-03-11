@@ -1,13 +1,14 @@
 const express = require('express');
 const app = express();
-const path = require('path');
-const sqlite3 = require('sqlite3').verbose();
+const cors = require('cors');
 
 const bodyParser = require('body-parser');
 const port = process.env.PORT || 3001;
+const path = require('path');
+const sqlite3 = require('sqlite3').verbose();
+
 const route = require('./routes/index.js');
 
-const cors = require('cors');
 app.use(cors());
 app.use(bodyParser.json());
 app.use('/api', route);
