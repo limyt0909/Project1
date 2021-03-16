@@ -23,7 +23,9 @@ const Top = () => {
               <NavDropdown title="About-A-ONE" id="collasible-nav-dropdown">
                 <NavDropdown.Item href="/Aboutaone">회사소개</NavDropdown.Item>
                 <NavDropdown.Item href="/Aboutaone2">조직도</NavDropdown.Item>
-                <NavDropdown.Item href="/Aboutaone3">인물소개</NavDropdown.Item>
+                <NavDropdown.Item href="/Aboutaone3">
+                  구성원소개
+                </NavDropdown.Item>
                 <NavDropdown.Item href="/Aboutaone4">경영방침</NavDropdown.Item>
                 <NavDropdown.Divider />
                 <NavDropdown.Item href="/Aboutaone5">연혁</NavDropdown.Item>
