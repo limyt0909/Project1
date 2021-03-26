@@ -6,7 +6,7 @@ import axios from 'axios';
 
 import './comments.css';
 
-const More = () => {
+const More2 = () => {
   const [booksNo, setBooksNo] = useState('');
   const location = window.location.href.split('?');
 
@@ -28,7 +28,7 @@ const More = () => {
     if (location.length <= 1) return;
     const idx = location[1].split('=')[1];
     setBooksNo(idx);
-    axios.get(`http://3.36.115.7/more?idx=${idx}`).then((res) => {
+    axios.get(`http://3.36.115.7/more2?idx=${idx}`).then((res) => {
       const books = res.data.books;
       displayBook(books);
     });
@@ -78,10 +78,10 @@ const More = () => {
         <div class="form-group row">
           <label class="col-form-label col-sm-2"></label>
           <div class="col-sm-10">
-            <a href={`/edit?idx=${booksNo}`} class="btn btn-warning cancel">
+            <a href={`/edit2?idx=${booksNo}`} class="btn btn-warning cancel">
               Edit
             </a>
-            <a href="/board" class="btn btn-outline-dark cancel">
+            <a href="/board2" class="btn btn-outline-dark cancel">
               Back
             </a>
           </div>{' '}
@@ -92,4 +92,4 @@ const More = () => {
   );
 };
 
-export default More;
+export default More2;

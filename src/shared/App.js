@@ -57,6 +57,18 @@ import {
   Create,
   Edit,
   More,
+  board2,
+  Create2,
+  Edit2,
+  More2,
+  board3,
+  Create3,
+  Edit3,
+  More3,
+  board4,
+  Create4,
+  Edit4,
+  More4,
 } from '../pages';
 
 class App extends Component {
@@ -107,6 +119,21 @@ class App extends Component {
         <Route path="/edit" component={Edit} />
         <Route path="/More" component={More} />
         <Route exact path="/Create" component={Create} />
+
+        <Route exact path="/board2" component={board2} />
+        <Route path="/edit2" component={Edit2} />
+        <Route path="/More2" component={More2} />
+        <Route exact path="/Create2" component={Create2} />
+
+        <Route exact path="/board3" component={board3} />
+        <Route path="/edit3" component={Edit3} />
+        <Route path="/More3" component={More3} />
+        <Route exact path="/Create3" component={Create3} />
+
+        <Route exact path="/board4" component={board4} />
+        <Route path="/edit4" component={Edit4} />
+        <Route path="/More4" component={More4} />
+        <Route exact path="/Create4" component={Create4} />
       </div>
     );
   }

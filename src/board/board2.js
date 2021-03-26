@@ -15,11 +15,11 @@ import axios from 'axios';
   content="width=device-width, initial-scale=1, shrink-to-fit=no"
 />;
 
-const Board = () => {
+const Board2 = () => {
   //DB를 불러오는 명령어
   const [data, setData] = useState([]);
   useEffect(() => {
-    axios.get('/books').then((res) => {
+    axios.get('/books2').then((res) => {
       const books = res.data.books;
       setData(books);
     });
@@ -32,7 +32,7 @@ const Board = () => {
       const tr = document.createElement('tr');
       tr.addEventListener('click', () => {
         console.log(key.idx);
-        window.location.href = `/more?idx=${key.idx}`;
+        window.location.href = `/more2?idx=${key.idx}`;
       });
 
       const idx = document.createElement('td');
@@ -57,7 +57,7 @@ const Board = () => {
   return (
     <section>
       <Top />
-      <div className={styles.title}> 관세무역 자료실 </div>
+      <div className={styles.title}> 뉴스 </div>
       <div class="container">
         <link
           rel="stylesheet"
@@ -77,7 +77,7 @@ const Board = () => {
                     <th>작성자</th>
                     <th>작성일</th>
                     <th class="d-print-none">
-                      <a class="btn btn-sm btn-success" href="/create">
+                      <a class="btn btn-sm btn-success" href="/create2">
                         Create
                       </a>{' '}
                     </th>
@@ -94,4 +94,4 @@ const Board = () => {
   );
 };
 
-export default Board;
+export default Board2;

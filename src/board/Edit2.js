@@ -16,7 +16,7 @@ import { useHistory } from 'react-router-dom';
   content="width=device-width, initial-scale=1, shrink-to-fit=no"
 />;
 
-const Edit = () => {
+const Edit2 = () => {
   const history = useHistory();
   const [data, setData] = useState([]);
   const [booksNo, setBooksNo] = useState('');
@@ -60,7 +60,7 @@ const Edit = () => {
     if (location.length <= 1) return;
     const idx = location[1].split('=')[1];
     setBooksNo(idx);
-    axios.get(`http://3.36.115.7/more?idx=${idx}`).then((res) => {
+    axios.get(`http://3.36.115.7/more2?idx=${idx}`).then((res) => {
       const books = res.data.books;
       displayBook(books);
     });
@@ -82,7 +82,7 @@ const Edit = () => {
       Author: AuthorModify,
       Comments: CommentsModify,
     };
-    axios.post('/edit', updateData).then(history.push('/board'));
+    axios.post('/edit2', updateData).then(history.push('/board2'));
   };
 
   const handleDelete = () => {
@@ -90,8 +90,8 @@ const Edit = () => {
     const data = {
       idx: booksNo,
     };
-    axios.post('/delete', data).then((res) => {
-      history.push('/board');
+    axios.post('/delete2', data).then((res) => {
+      history.push('/board2');
     });
   };
 
@@ -161,7 +161,7 @@ const Edit = () => {
                   className="btn btn-default btn-warning"
                   onClick={update}
                 />
-                <a href="/board" class="btn btn-outline-dark cancel">
+                <a href="/board2" class="btn btn-outline-dark cancel">
                   Back
                 </a>
                 <a href onClick={handleDelete} class="btn btn-danger cancel">
@@ -177,4 +177,4 @@ const Edit = () => {
   );
 };
 
-export default Edit;
+export default Edit2;

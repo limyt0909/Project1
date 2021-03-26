@@ -47,3 +47,18 @@ export { default as board } from '../board/board';
 export { default as Create } from '../board/Create';
 export { default as Edit } from '../board/Edit';
 export { default as More } from '../board/More';
+
+export { default as board2 } from '../board/board2';
+export { default as Create2 } from '../board/Create2';
+export { default as Edit2 } from '../board/Edit2';
+export { default as More2 } from '../board/More2';
+
+export { default as board3 } from '../board/board3';
+export { default as Create3 } from '../board/Create3';
+export { default as Edit3 } from '../board/Edit3';
+export { default as More3 } from '../board/More3';
+
+export { default as board4 } from '../board/board4';
+export { default as Create4 } from '../board/Create4';
+export { default as Edit4 } from '../board/Edit4';
+export { default as More4 } from '../board/More4';

@@ -5,7 +5,6 @@ import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 
 import Img2 from '../images/whitemark2.png';
-import Img3 from '../images/blackmark3.png';
 
 const Top = () => {
   return (
@@ -122,23 +121,21 @@ const Top = () => {
               </NavDropdown>
               　　
               <NavDropdown title="Resources" id="collasible-nav-dropdown">
-                <NavDropdown.Item href="/Resources" disabled>
+                <NavDropdown.Item href="/board2">
                   관세무역 뉴스
                 </NavDropdown.Item>
                 <NavDropdown.Item href="/board">
                   관세무역 자료실
                 </NavDropdown.Item>
                 <NavDropdown.Divider />
-                <NavDropdown.Item href="/Resources3" disabled>
+                <NavDropdown.Item href="/board3">
                   A-one Webzine
                 </NavDropdown.Item>
                 <NavDropdown.Item href="/Resources4">
                   유관기관 안내
                 </NavDropdown.Item>
                 <NavDropdown.Divider />
-                <NavDropdown.Item href="/Resources5" disabled>
-                  정운기 칼럼
-                </NavDropdown.Item>
+                <NavDropdown.Item href="/board4">정운기 칼럼</NavDropdown.Item>
               </NavDropdown>
             </Nav>
             <Nav.Link href="http://aone.helptrade.net/rkdk/rkr.asp">

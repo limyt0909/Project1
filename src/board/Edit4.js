@@ -60,7 +60,7 @@ const Edit = () => {
     if (location.length <= 1) return;
     const idx = location[1].split('=')[1];
     setBooksNo(idx);
-    axios.get(`http://3.36.115.7/more?idx=${idx}`).then((res) => {
+    axios.get(`http://3.36.115.7/more4?idx=${idx}`).then((res) => {
       const books = res.data.books;
       displayBook(books);
     });
@@ -82,7 +82,7 @@ const Edit = () => {
       Author: AuthorModify,
       Comments: CommentsModify,
     };
-    axios.post('/edit', updateData).then(history.push('/board'));
+    axios.post('/edit4', updateData).then(history.push('/board4'));
   };
 
   const handleDelete = () => {
@@ -90,8 +90,8 @@ const Edit = () => {
     const data = {
       idx: booksNo,
     };
-    axios.post('/delete', data).then((res) => {
-      history.push('/board');
+    axios.post('/delete4', data).then((res) => {
+      history.push('/board4');
     });
   };
 
@@ -161,7 +161,7 @@ const Edit = () => {
                   className="btn btn-default btn-warning"
                   onClick={update}
                 />
-                <a href="/board" class="btn btn-outline-dark cancel">
+                <a href="/board4" class="btn btn-outline-dark cancel">
                   Back
                 </a>
                 <a href onClick={handleDelete} class="btn btn-danger cancel">

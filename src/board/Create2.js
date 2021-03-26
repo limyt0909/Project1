@@ -16,7 +16,7 @@ import { useHistory } from 'react-router-dom';
   content="width=device-width, initial-scale=1, shrink-to-fit=no"
 />;
 
-const Create = () => {
+const Create2 = () => {
   //useState 선언 -> handleonChange에서 사용
   const [title, setTitle] = useState();
   const [author, setAuthor] = useState();
@@ -46,8 +46,8 @@ const Create = () => {
       Comments: comments,
     };
     //server.js 에있는 app.post Create에 데이터 전달
-    axios.post(`/create`, updateData).then((res) => {
-      history.push('/board');
+    axios.post(`/create2`, updateData).then((res) => {
+      history.push('/board2');
     });
   };
 
@@ -104,7 +104,7 @@ const Create = () => {
                   onClick={handleCreate}
                 />
 
-                <a class="btn btn-outline-dark cancel" href="/board">
+                <a class="btn btn-outline-dark cancel" href="/board2">
                   Cancel
                 </a>
               </div>
@@ -117,4 +117,4 @@ const Create = () => {
   );
 };
 
-export default Create;
+export default Create2;
