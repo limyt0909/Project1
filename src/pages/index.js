@@ -62,3 +62,8 @@ export { default as board4 } from '../board/board4';
 export { default as Create4 } from '../board/Create4';
 export { default as Edit4 } from '../board/Edit4';
 export { default as More4 } from '../board/More4';
+
+export { default as board5 } from '../board/board5';
+export { default as Create5 } from '../board/Create5';
+export { default as More5 } from '../board/More5';
+export { default as Edit5 } from '../board/Edit5';

@@ -69,6 +69,10 @@ import {
   Create4,
   Edit4,
   More4,
+  Create5,
+  More5,
+  board5,
+  Edit5,
 } from '../pages';
 
 class App extends Component {
@@ -134,6 +138,11 @@ class App extends Component {
         <Route path="/edit4" component={Edit4} />
         <Route path="/More4" component={More4} />
         <Route exact path="/Create4" component={Create4} />
+
+        <Route exact path="/Create5" component={Create5} />
+        <Route path="/More5" component={More5} />
+        <Route path="/board5" component={board5} />
+        <Route path="/edit5" component={Edit5} />
       </div>
     );
   }

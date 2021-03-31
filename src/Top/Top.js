@@ -136,11 +136,11 @@ const Top = () => {
                 </NavDropdown.Item>
                 <NavDropdown.Divider />
                 <NavDropdown.Item href="/board4">정운기 칼럼</NavDropdown.Item>
+                <NavDropdown.Item href="/board5">
+                  첨부파일 테스트 게시판
+                </NavDropdown.Item>
               </NavDropdown>
             </Nav>
-            <Nav.Link href="http://aone.helptrade.net/rkdk/rkr.asp">
-              Login
-            </Nav.Link>
           </Navbar.Collapse>
         </div>
       </Navbar>
