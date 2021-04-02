@@ -13,17 +13,18 @@ const More5 = () => {
   //ID값을 찾아서 데이터 뿌리기
   const displayBook = (book) => {
     if (book.length === 0) return;
-    book.forEach((key, value) => {
+    book.forEach((key, value, file) => {
       const Title = document.getElementById('Title');
-      const Author = document.getElementById('Author');
       Title.value = key.Title;
+
+      const Author = document.getElementById('Author');
       Author.value = key.Author;
 
       const Comments = document.getElementById('Comments');
       Comments.innerHTML = key.Comments;
 
       const File = document.getElementById('File');
-      File.value = key.File;
+      File.innerHTML = key.File;
     });
   };
 
@@ -90,8 +91,15 @@ const More5 = () => {
             </a>
           </div>{' '}
         </div>{' '}
+        <div class="form-group row">
+          <label class="col-form-label col-sm-2" for="File">
+            첨부파일
+          </label>
+          <div class="col-sm-10">
+            <p id="File"></p>
+          </div>
+        </div>
       </div>
-      <p id="File"></p>
       <Bottom />
     </>
   );

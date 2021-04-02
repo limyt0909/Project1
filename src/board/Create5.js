@@ -20,11 +20,13 @@ import Filepost from './Filepost';
 
 const Create5 = () => {
   //useState 선언 -> handleonChange에서 사용
+
   const [title, setTitle] = useState();
   const [author, setAuthor] = useState();
   const [comments, setComments] = useState();
   const [file, setFile] = useState();
 
+  const [content, setContent] = useState(''); //백엔드로 보낼 state
   const history = useHistory();
 
   //classname에 있는 내용을 value에 저장
@@ -40,15 +42,13 @@ const Create5 = () => {
       setComments(value);
     }
     if (className === 'File') {
+      setContent(event.target.files[0]);
+
       setFile(value);
     }
   };
 
   console.log(handleOnChange);
-
-  const handleOnclick = (e) => {
-    this.value = null;
-  };
 
   const handleCreate = () => {
     const updateData = {
@@ -61,6 +61,22 @@ const Create5 = () => {
     axios.post(`/create5`, updateData).then((res) => {
       history.push('/board5');
     });
+  };
+  const onSubmit = (e) => {
+    e.preventDefault();
+    const formData = new FormData();
+    formData.append('img', content);
+    axios
+      .post('/upload', formData)
+      .then((res) => {
+        const { fileName } = res.data;
+        console.log(fileName);
+
+        alert('파일 업로드에 성공했습니다.');
+      })
+      .catch((err) => {
+        console.error(err);
+      });
   };
 
   return (
@@ -125,17 +141,17 @@ const Create5 = () => {
         </form>
       </div>
 
-      <form enctype="multipart/form-data">
+      <form enctype="multipart/form-data" method="post" onSubmit={onSubmit}>
         <input
           type="file"
           className="File"
           multiple=""
           onChange={handleOnChange}
-        />
+        />{' '}
+        <button type="submit">Up</button>
       </form>
 
       <Filepost />
-
       <Bottom />
     </>
   );
