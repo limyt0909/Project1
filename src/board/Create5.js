@@ -130,7 +130,7 @@ const Create5 = () => {
                   onClick={handleCreate}
                 />
 
-                <a class="btn btn-outline-dark cancel" href="/board">
+                <a class="btn btn-outline-dark cancel" href="/board5">
                   Cancel
                 </a>
               </div>

@@ -1,0 +1,9 @@
+#File{
+    cursor: pointer;
+    color : blue;
+    font-weight : 800;
+    transition: .4s;
+}
+#File:hover{
+    color : black;
+}

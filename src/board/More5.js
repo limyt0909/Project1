@@ -3,7 +3,7 @@ import Top from '../Top/Top';
 import Bottom from '../Bottom/Bottom';
 import styles from '../pages/Aboutaone.module.css';
 import axios from 'axios';
-
+import "./More5.css";
 import './comments.css';
 
 const More5 = () => {
@@ -44,17 +44,21 @@ const More5 = () => {
     });
   }, []);
 
-
-
-  const filedownload = () => {
-    axios.get(`http://localhost/download?filename=${filename}`).then((res) => {
-      console.log(res)
-      
+  const filedownload = () => { 
+    axios({
+      url: `http://localhost/download?filename=${filename}`,
+      method: 'GET',
+      responseType: 'blob', // important
+    }    ).then((res) => {
+      const url = window.URL.createObjectURL(new Blob([res.data]));
+      const link = document.createElement('a');
+      link.href = url;
+      link.setAttribute('download', filename);
+      document.body.appendChild(link);
+      link.click();      
     });
   }
   
-
-
   return (
     <>
       <Top />
@@ -115,7 +119,8 @@ const More5 = () => {
                        >다운로드</button>
           </label>
           <div class="col-sm-10">
-            <p id="File"            ></p>
+            <p id="File" onClick={filedownload}></p>
+
           </div>
         </div>
       </div>
