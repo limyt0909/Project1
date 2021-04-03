@@ -5,7 +5,6 @@ import styles from '../pages/Aboutaone.module.css';
 import axios from 'axios';
 import { useHistory } from 'react-router-dom';
 
-import Filepost from './Filepost';
 
 <link
   rel="stylesheet"
@@ -43,8 +42,7 @@ const Create5 = () => {
     }
     if (className === 'File') {
       setContent(event.target.files[0]);
-
-      setFile(value);
+      setFile(event.target.files[0].name);
     }
   };
 
@@ -65,7 +63,7 @@ const Create5 = () => {
   const onSubmit = (e) => {
     e.preventDefault();
     const formData = new FormData();
-    formData.append('img', content);
+    formData.append('files', content);
     axios
       .post('/upload', formData)
       .then((res) => {
@@ -151,7 +149,7 @@ const Create5 = () => {
         <button type="submit">Up</button>
       </form>
 
-      <Filepost />
+
       <Bottom />
     </>
   );

@@ -8,6 +8,8 @@ import './comments.css';
 
 const More5 = () => {
   const [booksNo, setBooksNo] = useState('');
+  const [filename,setfilename] = useState('');
+
   const location = window.location.href.split('?');
 
   //ID값을 찾아서 데이터 뿌리기
@@ -25,6 +27,9 @@ const More5 = () => {
 
       const File = document.getElementById('File');
       File.innerHTML = key.File;
+      setfilename(key.File)
+
+
     });
   };
 
@@ -38,6 +43,17 @@ const More5 = () => {
       displayBook(books);
     });
   }, []);
+
+
+
+  const filedownload = () => {
+    axios.get(`http://localhost/download?filename=${filename}`).then((res) => {
+      console.log(res)
+      
+    });
+  }
+  
+
 
   return (
     <>
@@ -94,9 +110,12 @@ const More5 = () => {
         <div class="form-group row">
           <label class="col-form-label col-sm-2" for="File">
             첨부파일
+
+            <button onClick={filedownload}
+                       >다운로드</button>
           </label>
           <div class="col-sm-10">
-            <p id="File"></p>
+            <p id="File"            ></p>
           </div>
         </div>
       </div>
