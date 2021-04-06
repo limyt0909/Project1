@@ -16,7 +16,7 @@ import { useHistory } from 'react-router-dom';
   content="width=device-width, initial-scale=1, shrink-to-fit=no"
 />;
 
-const Edit = () => {
+const Edit4 = () => {
   const history = useHistory();
   const [data, setData] = useState([]);
   const [booksNo, setBooksNo] = useState('');
@@ -177,4 +177,4 @@ const Edit = () => {
   );
 };
 
-export default Edit;
+export default Edit4;

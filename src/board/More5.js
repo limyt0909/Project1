@@ -3,12 +3,12 @@ import Top from '../Top/Top';
 import Bottom from '../Bottom/Bottom';
 import styles from '../pages/Aboutaone.module.css';
 import axios from 'axios';
-import "./More5.css";
+import './More5.css';
 import './comments.css';
 
 const More5 = () => {
   const [booksNo, setBooksNo] = useState('');
-  const [filename,setfilename] = useState('');
+  const [filename, setfilename] = useState('');
 
   const location = window.location.href.split('?');
 
@@ -27,9 +27,7 @@ const More5 = () => {
 
       const File = document.getElementById('File');
       File.innerHTML = key.File;
-      setfilename(key.File)
-
-
+      setfilename(key.File);
     });
   };
 
@@ -44,21 +42,21 @@ const More5 = () => {
     });
   }, []);
 
-  const filedownload = () => { 
+  const filedownload = () => {
     axios({
       url: `http://localhost/download?filename=${filename}`,
       method: 'GET',
       responseType: 'blob', // important
-    }    ).then((res) => {
+    }).then((res) => {
       const url = window.URL.createObjectURL(new Blob([res.data]));
       const link = document.createElement('a');
       link.href = url;
       link.setAttribute('download', filename);
       document.body.appendChild(link);
-      link.click();      
+      link.click();
     });
-  }
-  
+  };
+
   return (
     <>
       <Top />
@@ -114,13 +112,9 @@ const More5 = () => {
         <div class="form-group row">
           <label class="col-form-label col-sm-2" for="File">
             첨부파일
-
-            <button onClick={filedownload}
-                       >다운로드</button>
           </label>
           <div class="col-sm-10">
             <p id="File" onClick={filedownload}></p>
-
           </div>
         </div>
       </div>

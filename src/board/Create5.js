@@ -5,7 +5,6 @@ import styles from '../pages/Aboutaone.module.css';
 import axios from 'axios';
 import { useHistory } from 'react-router-dom';
 
-
 <link
   rel="stylesheet"
   href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
@@ -137,19 +136,17 @@ const Create5 = () => {
             </div>
           </div>
         </form>
+
+        <form enctype="multipart/form-data" method="post" onSubmit={onSubmit}>
+          <input
+            type="file"
+            className="File"
+            multiple=""
+            onChange={handleOnChange}
+          />{' '}
+          <button type="submit">Up</button>
+        </form>
       </div>
-
-      <form enctype="multipart/form-data" method="post" onSubmit={onSubmit}>
-        <input
-          type="file"
-          className="File"
-          multiple=""
-          onChange={handleOnChange}
-        />{' '}
-        <button type="submit">Up</button>
-      </form>
-
-
       <Bottom />
     </>
   );
