@@ -85,7 +85,7 @@ const Edit5 = () => {
     if (location.length <= 1) return;
     const idx = location[1].split('=')[1];
     setBooksNo(idx);
-    axios.get(`http://localhost/more5?idx=${idx}`).then((res) => {
+    axios.get(`http://3.36.115.7/more5?idx=${idx}`).then((res) => {
       const books = res.data.books;
       displayBook(books);
     });

@@ -36,7 +36,7 @@ const More2 = () => {
     if (location.length <= 1) return;
     const idx = location[1].split('=')[1];
     setBooksNo(idx);
-    axios.get(`http://localhost/more2?idx=${idx}`).then((res) => {
+    axios.get(`http://3.36.115.7/more2?idx=${idx}`).then((res) => {
       const books = res.data.books;
       displayBook(books);
     });
@@ -44,7 +44,7 @@ const More2 = () => {
 
   const filedownload = () => {
     axios({
-      url: `http://localhost/download?filename=${filename}`,
+      url: `http://3.36.115.7/download?filename=${filename}`,
       method: 'GET',
       responseType: 'blob', // important
     }).then((res) => {
