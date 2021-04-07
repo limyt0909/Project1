@@ -18,9 +18,13 @@ import { useHistory } from 'react-router-dom';
 
 const Create = () => {
   //useState 선언 -> handleonChange에서 사용
+
   const [title, setTitle] = useState();
   const [author, setAuthor] = useState();
   const [comments, setComments] = useState();
+  const [file, setFile] = useState();
+
+  const [content, setContent] = useState(''); //백엔드로 보낼 state
   const history = useHistory();
 
   //classname에 있는 내용을 value에 저장
@@ -35,6 +39,10 @@ const Create = () => {
     if (className === 'Comments') {
       setComments(value);
     }
+    if (className === 'File') {
+      setContent(event.target.files[0]);
+      setFile(event.target.files[0].name);
+    }
   };
 
   console.log(handleOnChange);
@@ -44,17 +52,34 @@ const Create = () => {
       Title: title,
       Author: author,
       Comments: comments,
+      File: file,
     };
     //server.js 에있는 app.post Create에 데이터 전달
     axios.post(`/create3`, updateData).then((res) => {
       history.push('/board3');
     });
   };
+  const onSubmit = (e) => {
+    e.preventDefault();
+    const formData = new FormData();
+    formData.append('files', content);
+    axios
+      .post('/upload', formData)
+      .then((res) => {
+        const { fileName } = res.data;
+        console.log(fileName);
+
+        alert('파일 업로드에 성공했습니다.');
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  };
 
   return (
     <>
       <Top />
-      <div className={styles.title}> 게시글 쓰기 </div>
+      <div className={styles.title}> WebZine 글쓰기 </div>
       <div class="container">
         <h1>Create</h1>
 
@@ -110,6 +135,16 @@ const Create = () => {
               </div>
             </div>
           </div>
+        </form>
+
+        <form enctype="multipart/form-data" method="post" onSubmit={onSubmit}>
+          <input
+            type="file"
+            className="File"
+            multiple=""
+            onChange={handleOnChange}
+          />{' '}
+          <button type="submit">Up</button>
         </form>
       </div>
       <Bottom />

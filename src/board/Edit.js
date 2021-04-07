@@ -17,13 +17,52 @@ import { useHistory } from 'react-router-dom';
 />;
 
 const Edit = () => {
-  const history = useHistory();
-  const [data, setData] = useState([]);
+  const [title, setTitle] = useState();
+  const [author, setAuthor] = useState();
+  const [comments, setComments] = useState();
+  const [file, setFile] = useState();
   const [booksNo, setBooksNo] = useState('');
-  const [title, setTitle] = useState('');
-  const [author, setAuthor] = useState('');
-  const [comments, setComments] = useState('');
+  const [content, setContent] = useState(''); //백엔드로 보낼 state
+  const history = useHistory();
 
+  //classname에 있는 내용을 value에 저장
+  const handleOnChange = (event) => {
+    const { className, value } = event.target;
+    if (className === 'Title') {
+      setTitle(value);
+    }
+    if (className === 'Author') {
+      setAuthor(value);
+    }
+    if (className === 'Comments') {
+      setComments(value);
+    }
+    if (className === 'File') {
+      setContent(event.target.files[0]);
+      setFile(event.target.files[0].name);
+    }
+    console.log(handleOnChange);
+  };
+
+  //form 첨부파일을 Uploads 폴더로 전송
+  const onSubmit = (e) => {
+    e.preventDefault();
+    const formData = new FormData();
+    formData.append('files', content);
+    axios
+      .post('/upload', formData)
+      .then((res) => {
+        const { fileName } = res.data;
+        console.log(fileName);
+
+        alert('파일 업로드에 성공했습니다.');
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  };
+
+  //저장된 데이터 가져와서 뿌리기
   const location = window.location.href.split('?');
   const displayBook = (book) => {
     if (book.length === 0) return;
@@ -42,49 +81,28 @@ const Edit = () => {
     });
   };
 
-  const handleOnChange = (event) => {
-    const { className, value } = event.target;
-    console.log(className, value);
-    if (className === 'Title') {
-      setTitle(value);
-    }
-    if (className === 'Author') {
-      setAuthor(value);
-    }
-    if (className === 'Comments') {
-      setComments(value);
-    }
-  };
-
   useEffect(() => {
     if (location.length <= 1) return;
     const idx = location[1].split('=')[1];
     setBooksNo(idx);
-    axios.get(`http://3.36.115.7/more?idx=${idx}`).then((res) => {
+    axios.get(`http://localhost/more?idx=${idx}`).then((res) => {
       const books = res.data.books;
       displayBook(books);
     });
   }, []);
 
   const update = () => {
-    const TitleElem = document.getElementById('Title');
-    const AuthorElem = document.getElementById('Author');
-    const CommentsElem = document.getElementById('Comments');
-
-    let TitleModify = TitleElem.value;
-    let AuthorModify = AuthorElem.value;
-    let CommentsModify = CommentsElem.value;
-
     const updateData = {
       idx: booksNo,
-
-      Title: TitleModify,
-      Author: AuthorModify,
-      Comments: CommentsModify,
+      Title: title,
+      Author: author,
+      Comments: comments,
+      File: file,
     };
-    axios.post('/edit', updateData).then(history.push('/board'));
+    axios.post('/edit5', updateData).then(history.push('/board'));
   };
 
+  //삭제하는 Axios
   const handleDelete = () => {
     console.log('Delete Function');
     const data = {
@@ -113,7 +131,7 @@ const Edit = () => {
               <div class="col-sm-8">
                 <input
                   readonly
-                  className="form-control-plaintext Title"
+                  className="Title"
                   id="Title"
                   onChange={handleOnChange}
                 />
@@ -127,7 +145,7 @@ const Edit = () => {
               <div class="col-sm-7">
                 <input
                   readonly
-                  className="form-control-plaintext Author"
+                  className="Author"
                   id="Author"
                   values="<titles></titles>"
                   onChange={handleOnChange}
@@ -142,8 +160,8 @@ const Edit = () => {
               <div class="col-sm-10">
                 <textarea
                   readonly
-                  className="form-control-plaintext Comments"
-                  cols="20"
+                  className="Comments"
+                  cols="80"
                   id="Comments"
                   maxlength="32000"
                   rows="7"
@@ -154,24 +172,36 @@ const Edit = () => {
 
             <div class="form-group row">
               <label class="col-form-label col-sm-2"></label>
-              <div class="col-sm-10">
-                <input
-                  type="submit"
-                  value="Update"
-                  className="btn btn-default btn-warning"
-                  onClick={update}
-                />
-                <a href="/board" class="btn btn-outline-dark cancel">
-                  Back
-                </a>
-                <a href onClick={handleDelete} class="btn btn-danger cancel">
-                  Delete
-                </a>
-              </div>
+              <div class="col-sm-10"></div>
             </div>
           </div>
         </form>
+        <br />
+        <input
+          type="submit"
+          value="Update"
+          className="btn btn-default btn-warning"
+          onClick={update}
+        />
+        <a href="/board" class="btn btn-outline-dark cancel">
+          Back
+        </a>
+        <a href onClick={handleDelete} class="btn btn-danger cancel">
+          Delete
+        </a>
+
+        <form enctype="multipart/form-data" method="post" onSubmit={onSubmit}>
+          <input
+            type="file"
+            className="File"
+            multiple=""
+            id="File"
+            onChange={handleOnChange}
+          />{' '}
+          <button type="submit">Upload</button>
+        </form>
       </div>
+      <br />
       <Bottom />
     </>
   );

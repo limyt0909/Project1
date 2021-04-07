@@ -3,23 +3,31 @@ import Top from '../Top/Top';
 import Bottom from '../Bottom/Bottom';
 import styles from '../pages/Aboutaone.module.css';
 import axios from 'axios';
-
+import './More5.css';
 import './comments.css';
 
 const More3 = () => {
   const [booksNo, setBooksNo] = useState('');
+  const [filename, setfilename] = useState('');
+
   const location = window.location.href.split('?');
 
   //ID값을 찾아서 데이터 뿌리기
   const displayBook = (book) => {
     if (book.length === 0) return;
-    book.forEach((key, value) => {
+    book.forEach((key, value, file) => {
       const Title = document.getElementById('Title');
-      const Author = document.getElementById('Author');
       Title.value = key.Title;
+
+      const Author = document.getElementById('Author');
       Author.value = key.Author;
+
       const Comments = document.getElementById('Comments');
       Comments.innerHTML = key.Comments;
+
+      const File = document.getElementById('File');
+      File.innerHTML = key.File;
+      setfilename(key.File);
     });
   };
 
@@ -28,11 +36,26 @@ const More3 = () => {
     if (location.length <= 1) return;
     const idx = location[1].split('=')[1];
     setBooksNo(idx);
-    axios.get(`http://3.36.115.7/more3?idx=${idx}`).then((res) => {
+    axios.get(`http://localhost/more3?idx=${idx}`).then((res) => {
       const books = res.data.books;
       displayBook(books);
     });
   }, []);
+
+  const filedownload = () => {
+    axios({
+      url: `http://localhost/download?filename=${filename}`,
+      method: 'GET',
+      responseType: 'blob', // important
+    }).then((res) => {
+      const url = window.URL.createObjectURL(new Blob([res.data]));
+      const link = document.createElement('a');
+      link.href = url;
+      link.setAttribute('download', filename);
+      document.body.appendChild(link);
+      link.click();
+    });
+  };
 
   return (
     <>
@@ -86,6 +109,14 @@ const More3 = () => {
             </a>
           </div>{' '}
         </div>{' '}
+        <div class="form-group row">
+          <label class="col-form-label col-sm-2" for="File">
+            첨부파일
+          </label>
+          <div class="col-sm-10">
+            <p id="File" onClick={filedownload}></p>
+          </div>
+        </div>
       </div>
       <Bottom />
     </>
