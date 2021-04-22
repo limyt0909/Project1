@@ -8,10 +8,6 @@ import Img3 from '../images/인사말3.jpg';
 import Img4 from '../images/인사말4.jpg';
 import Img5 from '../images/인사말5.jpg';
 
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-import Container from 'react-bootstrap/Container';
-
 import styles from './Aboutaone.module.css';
 
 const Aboutaone = () => {

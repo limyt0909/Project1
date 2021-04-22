@@ -1,6 +1,12 @@
 /* 자동으로 고유해질 것이므로 흔히 사용되는 단어를 클래스 이름대로 사용가능 */
 
+@import url(https://cdn.jsdelivr.net/gh/moonspam/NanumSquare@1.0/nanumsquare.css);
+
 .main {
   color: rgb(29, 4, 53);
   font-size: 3rem;
+}
+
+.font {
+  font-family: 'NanumSquare', sans-serif;
 }

@@ -36,7 +36,7 @@ const More3 = () => {
     if (location.length <= 1) return;
     const idx = location[1].split('=')[1];
     setBooksNo(idx);
-    axios.get(`http://3.36.115.7/more3?idx=${idx}`).then((res) => {
+    axios.get(`http://localhost/more3?idx=${idx}`).then((res) => {
       const books = res.data.books;
       displayBook(books);
     });

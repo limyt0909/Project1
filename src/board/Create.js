@@ -18,30 +18,29 @@ import { useHistory } from 'react-router-dom';
 
 const Create = () => {
   //useState 선언 -> handleonChange에서 사용
-
-  const [title, setTitle] = useState();
-  const [author, setAuthor] = useState();
-  const [comments, setComments] = useState();
-  const [file, setFile] = useState();
+  const [title, setTitle] = useState('');
+  const [author, setAuthor] = useState('');
+  const [comments, setComments] = useState('');
+  const [file, setFile] = useState('');
+  const [hash, sethash] = useState('');
 
   const [content, setContent] = useState(''); //백엔드로 보낼 state
   const history = useHistory();
-
   //classname에 있는 내용을 value에 저장
+
   const handleOnChange = (event) => {
     const { className, value } = event.target;
     if (className === 'Title') {
       setTitle(value);
-    }
-    if (className === 'Author') {
+    } else if (className === 'Author') {
       setAuthor(value);
-    }
-    if (className === 'Comments') {
+    } else if (className === 'Comments') {
       setComments(value);
-    }
-    if (className === 'File') {
+    } else if (className === 'File') {
       setContent(event.target.files[0]);
       setFile(event.target.files[0].name);
+    } else {
+      console.log('something goes wrong.');
     }
   };
 
@@ -53,20 +52,24 @@ const Create = () => {
       Author: author,
       Comments: comments,
       File: file,
+      Hash: hash,
     };
     //server.js 에있는 app.post Create에 데이터 전달
+    console.log('created');
     axios.post(`/create`, updateData).then((res) => {
       history.push('/board');
     });
   };
+
   const onSubmit = (e) => {
     e.preventDefault();
     const formData = new FormData();
     formData.append('files', content);
     axios
-      .post('/upload', formData)
+      .post('/upload3', formData)
       .then((res) => {
         const { fileName } = res.data;
+        sethash(fileName);
         console.log(fileName);
 
         alert('파일 업로드에 성공했습니다.');
@@ -79,7 +82,7 @@ const Create = () => {
   return (
     <>
       <Top />
-      <div className={styles.title}> 관세무역 자료실 글쓰기 </div>
+      <div className={styles.title}> 첨부파일 테스트 </div>
       <div class="container">
         <h1>Create</h1>
 
@@ -129,7 +132,7 @@ const Create = () => {
                   onClick={handleCreate}
                 />
 
-                <a class="btn btn-outline-dark cancel" href="/board">
+                <a class="btn btn-outline-dark cancel" href="/board5">
                   Cancel
                 </a>
               </div>

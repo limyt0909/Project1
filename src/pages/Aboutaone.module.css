@@ -1,6 +1,7 @@
 /* 자동으로 고유해질 것이므로 흔히 사용되는 단어를 클래스 이름대로 사용가능 */
 
 @import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap');
+@import url(https://cdn.jsdelivr.net/gh/moonspam/NanumSquare@1.0/nanumsquare.css);
 
 /* top,bottom 배경색 */
 .up {
@@ -53,7 +54,8 @@
 }
 
 .font {
-  font-family: 'Nanum Gothic', sans-serif;
+  font-family: 'NanumSquare', sans-serif;
+
   font-size: 13pt;
 }
 

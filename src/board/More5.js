@@ -9,8 +9,21 @@ import './comments.css';
 const More5 = () => {
   const [booksNo, setBooksNo] = useState('');
   const [filename, setfilename] = useState('');
+  const [hash, sethash] = useState('');
 
   const location = window.location.href.split('?');
+
+  //해당 IDX에 맞는 내용 불러오기
+  useEffect(() => {
+    if (location.length <= 1) return;
+    const idx = location[1].split('=')[1];
+    setBooksNo(idx);
+    axios.get(`http://localhost/more5?idx=${idx}`).then((res) => {
+      const books = res.data.books;
+      displayBook(books);
+      console.log(books);
+    });
+  }, []);
 
   //ID값을 찾아서 데이터 뿌리기
   const displayBook = (book) => {
@@ -28,23 +41,17 @@ const More5 = () => {
       const File = document.getElementById('File');
       File.innerHTML = key.File;
       setfilename(key.File);
+
+      const hash = key.Hash;
+      sethash(hash);
+      console.log(hash);
     });
   };
 
-  //해당 IDX에 맞는 내용 불러오기
-  useEffect(() => {
-    if (location.length <= 1) return;
-    const idx = location[1].split('=')[1];
-    setBooksNo(idx);
-    axios.get(`http://3.36.115.7/more5?idx=${idx}`).then((res) => {
-      const books = res.data.books;
-      displayBook(books);
-    });
-  }, []);
-
+  //filedownload axios 파일 이름맞춰서 해당 폴더에서 다운로드
   const filedownload = () => {
     axios({
-      url: `http://3.36.115.7/download?filename=${filename}`,
+      url: `http://localhost/download?filename=${hash}`,
       method: 'GET',
       responseType: 'blob', // important
     }).then((res) => {

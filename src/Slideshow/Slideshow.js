@@ -14,7 +14,10 @@ const Slideshow = () => {
           src={slide1}
           alt="aone2?800x400?text=Second slide&bg=282c34"
         />
-        <Carousel.Caption>-</Carousel.Caption>
+
+        <Carousel.Caption>
+          첫번째 슬라이드 입니다 내용 테스트 teststst
+        </Carousel.Caption>
       </Carousel.Item>
 
       <Carousel.Item interval={1000}>

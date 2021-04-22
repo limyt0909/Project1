@@ -4,6 +4,7 @@ import Bottom from '../Bottom/Bottom';
 import styles from '../pages/Aboutaone.module.css';
 import axios from 'axios';
 import { useHistory } from 'react-router-dom';
+import './Edit5.css';
 
 <link
   rel="stylesheet"
@@ -11,36 +12,40 @@ import { useHistory } from 'react-router-dom';
   integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
   crossorigin="anonymous"
 />;
+
 <meta
   name="viewport"
   content="width=device-width, initial-scale=1, shrink-to-fit=no"
 />;
 
 const Edit4 = () => {
-  const [title, setTitle] = useState();
-  const [author, setAuthor] = useState();
-  const [comments, setComments] = useState();
-  const [file, setFile] = useState();
+  const [title, setTitle] = useState('');
+  const [author, setAuthor] = useState('');
+  const [comments, setComments] = useState('');
+
   const [booksNo, setBooksNo] = useState('');
   const [content, setContent] = useState(''); //백엔드로 보낼 state
-  const history = useHistory();
 
+  const [hash, sethash] = useState('');
+  const [file, setFile] = useState('');
+
+  const [isUploaded, setIsUploaded] = useState(false);
+
+  const history = useHistory();
   //classname에 있는 내용을 value에 저장
   const handleOnChange = (event) => {
     const { className, value } = event.target;
     if (className === 'Title') {
       setTitle(value);
-    }
-    if (className === 'Author') {
+    } else if (className === 'Author') {
       setAuthor(value);
-    }
-    if (className === 'Comments') {
+    } else if (className === 'Comments') {
       setComments(value);
-    }
-    if (className === 'File') {
+    } else if (className === 'File') {
       setContent(event.target.files[0]);
       setFile(event.target.files[0].name);
     }
+
     console.log(handleOnChange);
   };
 
@@ -50,9 +55,10 @@ const Edit4 = () => {
     const formData = new FormData();
     formData.append('files', content);
     axios
-      .post('/upload', formData)
+      .post('/upload3', formData)
       .then((res) => {
         const { fileName } = res.data;
+        sethash(fileName);
         console.log(fileName);
 
         alert('파일 업로드에 성공했습니다.');
@@ -70,14 +76,19 @@ const Edit4 = () => {
       const Comments = document.getElementById('Comments');
       const Title = document.getElementById('Title');
       const Author = document.getElementById('Author');
+      const File = document.getElementById('File');
 
       setTitle(key.Title);
       setAuthor(key.Author);
       setComments(key.Comments);
-
+      setFile(key.File);
+      setIsUploaded(key.File === '' ? false : true);
       Title.value = key.Title;
       Author.value = key.Author;
       Comments.value = key.Comments;
+      File.innerHTML = key.File;
+
+      console.log(book);
     });
   };
 
@@ -85,7 +96,7 @@ const Edit4 = () => {
     if (location.length <= 1) return;
     const idx = location[1].split('=')[1];
     setBooksNo(idx);
-    axios.get(`http://3.36.115.7/more4?idx=${idx}`).then((res) => {
+    axios.get(`http://localhost/more4?idx=${idx}`).then((res) => {
       const books = res.data.books;
       displayBook(books);
     });
@@ -98,6 +109,7 @@ const Edit4 = () => {
       Author: author,
       Comments: comments,
       File: file,
+      Hash: hash,
     };
     axios.post('/edit4', updateData).then(history.push('/board4'));
   };
@@ -113,6 +125,11 @@ const Edit4 = () => {
     });
   };
 
+  // 업로드된 파일 삭제하는 버튼 핸들러
+  const handleFileDelete = () => {
+    setIsUploaded(false);
+  };
+
   return (
     <>
       <Top />
@@ -120,8 +137,6 @@ const Edit4 = () => {
       <text />{' '}
       <div class="container">
         <h1>Edit</h1>
-
-        <tagbox />
         <form>
           <div class="form-horizontal">
             <div class="form-group row">
@@ -161,10 +176,10 @@ const Edit4 = () => {
                 <textarea
                   readonly
                   className="Comments"
-                  cols="110"
+                  cols="80"
                   id="Comments"
                   maxlength="32000"
-                  rows="20"
+                  rows="7"
                   onChange={handleOnChange}
                 ></textarea>
               </div>
@@ -189,17 +204,27 @@ const Edit4 = () => {
         <a href onClick={handleDelete} class="btn btn-danger cancel">
           Delete
         </a>
-
-        <form enctype="multipart/form-data" method="post" onSubmit={onSubmit}>
+        <form
+          class={isUploaded ? 'd-none' : ''}
+          enctype="multipart/form-data"
+          method="post"
+          onSubmit={onSubmit}
+        >
           <input
             type="file"
             className="File"
             multiple=""
-            id="File"
             onChange={handleOnChange}
           />{' '}
-          <button type="submit">Upload</button>
+          <button type="submit">Up load</button>
         </form>
+        <div class={isUploaded ? '' : 'd-none'}>
+          <p id="File"></p>
+          <button onClick={handleFileDelete} type="submit">
+            첨부파일 삭제
+          </button>
+        </div>
+        <br /> <br /> <br />
       </div>
       <br />
       <Bottom />
