@@ -1,0 +1,139 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Brush+Script&display=swap');
+@import url(https://cdn.jsdelivr.net/gh/moonspam/NanumSquare@1.0/nanumsquare.css);
+
+body {
+  font-family: arial, helvetica;
+}
+
+.fullscreen {
+  font-size: 5em;
+  text-align: center;
+  color: #fff;
+  font-weight: 700;
+}
+.fullscreen2 {
+  font-size: 60px;
+  text-align: center;
+}
+
+.fp-section {
+  text-align: center;
+}
+
+.button {
+  padding: 0.93em 1.87em;
+  background: #35495e;
+  border-radius: 5px;
+  border-color: transparent;
+  display: block;
+  color: #fff;
+  margin: 0 auto;
+  cursor: pointer;
+  font-size: 0.85em;
+}
+
+.Quicksand {
+  font-family: 'Quicksand', sans-serif;
+  font-size: 60px;
+}
+
+.Brush {
+  font-family: 'Nanum Brush Script', cursive;
+  font-size: 30px;
+}
+
+.NanumSqaure {
+  font-family: 'NanumSquare', sans-serif;
+  font-size: 20px;
+}
+
+.top {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 1000;
+  width: 100%;
+}
+
+.footheight {
+  height: 969px;
+  width: 100%;
+}
+
+.lefty {
+  text-align: left;
+}
+
+#myVideo {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  background-size: 100% 100%;
+  background-color: black; /* in case the video doesn't fit the whole page*/
+  background-position: center center;
+  background-size: contain;
+  object-fit: cover; /*cover video background */
+  z-index: 3;
+}
+
+#section0 {
+  background-image: url(https://images.pexels.com/photos/236730/pexels-photo-236730.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260);
+  font-family: 'NanumSquare', sans-serif;
+  color: white;
+}
+#section2 {
+  background-image: url(https://images.pexels.com/photos/3183183/pexels-photo-3183183.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260);
+  font-family: 'NanumSquare', sans-serif;
+  color: white;
+}
+#section3 {
+  background-image: url(https://www.nmg-consulting.com/wp-content/uploads/2019/08/Smart-wall-Level-Office-Landscape-Re-Mago-1920x1080.jpg);
+  font-family: 'NanumSquare', sans-serif;
+}
+
+.textbox {
+  display: inline-block;
+  width: auto;
+  text-align: left;
+  position: absolute;
+  top: 150px;
+  right: 100px;
+}
+
+.textbox {
+  display: inline-block;
+  width: auto;
+  text-align: left;
+  position: absolute;
+  top: 150px;
+  right: 60px;
+  font-size: 14px;
+  opacity: 0.8;
+}
+
+.textbox2 {
+  display: inline-block;
+  width: auto;
+  text-align: left;
+  position: absolute;
+  top: 130px;
+  right: 50px;
+  padding: 100px;
+  opacity: 0.8;
+}
+
+.textbox3 {
+  display: inline-block;
+  width: auto;
+  text-align: left;
+  position: absolute;
+  top: 150px;
+  left: 100px;
+  padding: 100px;
+  opacity: 0.8;
+}

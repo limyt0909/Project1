@@ -10,6 +10,7 @@ import styles from './Top.module.css';
 const Top = () => {
   return (
     <>
+      {' '}
       <div className={styles.font}>
         <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
           <Navbar.Brand href="/">
@@ -160,7 +161,7 @@ const Top = () => {
             </Navbar.Collapse>
           </div>
         </Navbar>
-      </div>
+      </div>{' '}
     </>
   );
 };

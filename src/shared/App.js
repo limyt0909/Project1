@@ -3,6 +3,8 @@ import { Route } from 'react-router-dom';
 
 import {
   Home,
+  Home2,
+  Home3,
   Aboutaone,
   Aboutaone2,
   Aboutaone3,
@@ -80,6 +82,8 @@ class App extends Component {
     return (
       <div>
         <Route exact path="/" component={Home} />
+        <Route exact path="/Home2" component={Home2} />{' '}
+        <Route exact path="/Home3" component={Home3} />
         <Route exact path="/aboutaone" component={Aboutaone} />
         <Route exact path="/aboutaone2" component={Aboutaone2} />
         <Route exact path="/aboutaone3" component={Aboutaone3} />
@@ -118,27 +122,22 @@ class App extends Component {
         <Route exact path="/Resources3" component={Resources3} />
         <Route exact path="/Resources4" component={Resources4} />
         <Route exact path="/Resources5" component={Resources5} />
-
         <Route exact path="/board" component={board} />
         <Route path="/edit" component={Edit} />
         <Route path="/More" component={More} />
         <Route exact path="/Create" component={Create} />
-
         <Route exact path="/board2" component={board2} />
         <Route path="/edit2" component={Edit2} />
         <Route path="/More2" component={More2} />
         <Route exact path="/Create2" component={Create2} />
-
         <Route exact path="/board3" component={board3} />
         <Route path="/edit3" component={Edit3} />
         <Route path="/More3" component={More3} />
         <Route exact path="/Create3" component={Create3} />
-
         <Route exact path="/board4" component={board4} />
         <Route path="/edit4" component={Edit4} />
         <Route path="/More4" component={More4} />
         <Route exact path="/Create4" component={Create4} />
-
         <Route exact path="/Create5" component={Create5} />
         <Route path="/More5" component={More5} />
         <Route path="/board5" component={board5} />

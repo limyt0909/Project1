@@ -43,7 +43,6 @@ const Bottom = () => {
           </div>
         </div>
       </div>
-
       <div className={styles.down}>
         <Nav className="justify-content-center" activeKey="/home">
           <Nav.Item>
@@ -74,7 +73,7 @@ const Bottom = () => {
             </Nav.Link>
           </Nav.Item>
         </Nav>
-      </div>
+      </div>{' '}
     </>
   );
 };

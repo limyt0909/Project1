@@ -18,6 +18,12 @@
   text-align: center;
 }
 
+.footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
 /* 글로벌 CSS 를 작성하고 싶다면 */
 
 :global .something {

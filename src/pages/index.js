@@ -1,4 +1,6 @@
 export { default as Home } from './Home';
+export { default as Home2 } from './Home2';
+export { default as Home3 } from './Home3';
 
 export { default as Aboutaone } from './Aboutaone';
 export { default as Aboutaone2 } from './Aboutaone2';

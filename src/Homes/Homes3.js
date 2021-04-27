@@ -5,6 +5,7 @@ import styles from './Homes.module.css';
 import Img1 from '../images/quick1.jpg';
 import Img2 from '../images/quick2.jpg';
 import Img4 from '../images/quick4.jpg';
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />;
 
 const Homes3 = () => {
   return (
