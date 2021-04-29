@@ -1,4 +1,5 @@
 import React from 'react';
+import { Component } from 'react';
 
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
@@ -14,6 +15,7 @@ const Top = () => {
       <div className={styles.font}>
         <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
           <Navbar.Brand href="/">
+            {' '}
             　 　
             <img src={Img2} alt="whitemark2" />
           </Navbar.Brand>

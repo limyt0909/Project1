@@ -4,7 +4,12 @@ import 'fullpage.js/vendors/scrolloverflow'; // Optional. When using scrollOverf
 import ReactFullpage from '@fullpage/react-fullpage';
 
 import './section.css';
+
+import Top2 from '../Top/Top2';
 import Top from '../Top/Top';
+import Top3 from '../Top/Top3';
+import Top4 from '../Top/Top4';
+
 import Bottom from '../Bottom/Bottom';
 class FullpageWrapper extends React.Component {
   onLeave(origin, destination, direction) {
@@ -17,7 +22,7 @@ class FullpageWrapper extends React.Component {
     return (
       <>
         <div className="top">
-          <Top />
+          <Top2 />
         </div>
 
         <div id="fp-nav" class="fp-right">
@@ -138,41 +143,40 @@ class FullpageWrapper extends React.Component {
                     <h1>fullPage.js videos</h1>
                   </div>
                 </div>               */}{' '}
-                <div class="section" id="section3">
-                  <div className="textbox">
-                    <h2>
-                      관세법인 에이원
-                      <br />
-                      <strong>여려분의 파트너</strong>를 만듭니다
-                    </h2>
-                    <ul>
-                      <li>
-                        국내 최고, 최대 관세법인 에이원에 오신것을 환영합니다
-                      </li>
-                      <li>
-                        에이원은 동종업계에서 최초로 <strong>AEO</strong>
-                        인증을 취득하고 이후 더 발전된 모습으로 <br />
-                      </li>
-                    </ul>
-                  </div>
-                </div>
                 <div class="section" id="section0">
                   <div className="textbox2">
                     <h2>
                       관세법인 에이원
                       <br />
-                      <strong>여려분의 파트너</strong>를 만듭니다
+                      <strong>여러분의 파트너</strong>를 만듭니다
                     </h2>
+                    <hr />
                     <ul>
                       <li>
                         국내 최고, 최대 관세법인 에이원에 오신것을 환영합니다
                       </li>
                       <li>
-                        서울본사와 주요 공항만에 탄탄한 조직은 물론 2개의
-                        대형물류센터를 갖추어
-                        <br />
-                        관세와 물류의 Intergrated Model을 창조해 나가고
-                        있습니다.
+                        기업심사, 조사, 쟁송, FTA, AEO 등 에이원만의 노하우를
+                        통해 컨설팅을 수행해 드립니다.
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="section" id="section1">
+                  <div className="textbox2">
+                    <h2>
+                      관세법인 에이원
+                      <br />
+                      <strong>여러분의 파트너</strong>를 만듭니다
+                    </h2>
+                    <hr />
+                    <ul>
+                      <li>
+                        국내 최고, 최대 관세법인 에이원에 오신것을 환영합니다
+                      </li>
+                      <li>
+                        기업심사, 조사, 쟁송, FTA, AEO 등 에이원만의 노하우를
+                        통해 컨설팅을 수행해 드립니다.
                       </li>
                     </ul>
                   </div>
@@ -182,17 +186,72 @@ class FullpageWrapper extends React.Component {
                     <h2>
                       관세법인 에이원
                       <br />
-                      <strong>여려분의 파트너</strong>를 만듭니다
-                    </h2>
+                      <strong>여러분의 파트너</strong>를 만듭니다
+                    </h2>{' '}
+                    <hr />
                     <ul>
                       <li>
                         국내 최고, 최대 관세법인 에이원에 오신것을 환영합니다
                       </li>
                       <li>
-                        서울본사와 주요 공항만에 탄탄한 조직은 물론 2개의
-                        대형물류센터를 갖추어
-                        <br />
-                        관세와 물류의 Intergrated Model을 창조해 나가고
+                        회사소개, 조직 및 구성원, CI, 경영방침 등을 확인하실 수
+                        있습니다.
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="section" id="section3">
+                  <div className="textbox3">
+                    <h2>
+                      관세법인 에이원
+                      <br />
+                      <strong>여러분의 파트너</strong>를 만듭니다
+                    </h2>{' '}
+                    <hr />
+                    <ul>
+                      <li>
+                        국내 최고, 최대 관세법인 에이원에 오신것을 환영합니다
+                      </li>
+                      <li>
+                        회사소개, 조직 및 구성원, CI, 경영방침 등을 확인하실 수
+                        있습니다.
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="section" id="section4">
+                  <div className="textbox3">
+                    <h2>
+                      관세법인 에이원
+                      <br />
+                      <strong>여러분의 파트너</strong>를 만듭니다
+                    </h2>{' '}
+                    <hr />
+                    <ul>
+                      <li>
+                        국내 최고, 최대 관세법인 에이원에 오신것을 환영합니다
+                      </li>
+                      <li>
+                        회사소개, 조직 및 구성원, CI, 경영방침 등을 확인하실 수
+                        있습니다.
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="section" id="section5">
+                  <div className="textbox3">
+                    <h2>
+                      관세법인 에이원
+                      <br />
+                      <strong>여러분의 파트너</strong>를 만듭니다
+                    </h2>{' '}
+                    <hr />
+                    <ul>
+                      <li>
+                        국내 최고, 최대 관세법인 에이원에 오신것을 환영합니다
+                      </li>
+                      <li>
+                        회사소개, 조직 및 구성원, CI, 경영방침 등을 확인하실 수
                         있습니다.
                       </li>
                     </ul>

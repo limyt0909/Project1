@@ -1,19 +1,13 @@
 import React from 'react';
 
+import Top2 from '../Top/Top2';
 import Top from '../Top/Top';
+
 import Bottom from '../Bottom/Bottom';
 
-import main2 from '../images/main2.png';
 import Img1 from '../images/심사대리.jpg';
 import Homes2 from '../Homes/Homes2';
 import Homes3 from '../Homes/Homes3';
-import Homes4 from '../Homes/Homes4';
-import Slideshow from '../Slideshow/Slideshow';
-
-import Box from '@material-ui/core/Box';
-import Button from '@material-ui/core/Button';
-
-import ReactFullpage from '@fullpage/react-fullpage';
 
 const Home = () => {
   const tempstyle = {
@@ -24,7 +18,6 @@ const Home = () => {
 
   return (
     <div>
-      {' '}
       <Top />
       <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
       <img src={Img1} alt="심사대리" width="100%" height="auto" />

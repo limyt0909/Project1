@@ -82,17 +82,32 @@ body {
 }
 
 #section0 {
-  background-image: url(https://images.pexels.com/photos/236730/pexels-photo-236730.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260);
+  background-image: url(https://images.pexels.com/photos/2058130/pexels-photo-2058130.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260);
   font-family: 'NanumSquare', sans-serif;
-  color: white;
 }
-#section2 {
+#section1 {
   background-image: url(https://images.pexels.com/photos/3183183/pexels-photo-3183183.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260);
   font-family: 'NanumSquare', sans-serif;
-  color: white;
+}
+#section2 {
+  background-image: url(https://images.pexels.com/photos/830891/pexels-photo-830891.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260);
+  font-family: 'NanumSquare', sans-serif;
 }
 #section3 {
-  background-image: url(https://www.nmg-consulting.com/wp-content/uploads/2019/08/Smart-wall-Level-Office-Landscape-Re-Mago-1920x1080.jpg);
+  background-image: url(https://images.pexels.com/photos/380768/pexels-photo-380768.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260);
+  font-family: 'NanumSquare', sans-serif;
+}
+
+#section4 {
+  background-image: url(https://images.pexels.com/photos/302769/pexels-photo-302769.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260);
+  font-family: 'NanumSquare', sans-serif;
+}
+#section5 {
+  background-image: url(https://images.pexels.com/photos/380768/pexels-photo-380768.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260);
+  font-family: 'NanumSquare', sans-serif;
+}
+#section6 {
+  background-image: url(https://images.pexels.com/photos/2058130/pexels-photo-2058130.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260);
   font-family: 'NanumSquare', sans-serif;
 }
 
@@ -113,7 +128,10 @@ body {
   top: 150px;
   right: 60px;
   font-size: 14px;
-  opacity: 0.8;
+  padding: 14px;
+  margin: 10px;
+  border-radius: 10px;
+  background-color: #d3d3d85e;
 }
 
 .textbox2 {
@@ -123,8 +141,10 @@ body {
   position: absolute;
   top: 130px;
   right: 50px;
-  padding: 100px;
+  padding: 10px;
   opacity: 0.8;
+
+  background-color: #eeeeee90;
 }
 
 .textbox3 {
@@ -134,6 +154,7 @@ body {
   position: absolute;
   top: 150px;
   left: 100px;
-  padding: 100px;
-  opacity: 0.8;
+  padding: 10px;
+  color: white;
+  background-color: #d4bcbc90;
 }
